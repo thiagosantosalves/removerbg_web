@@ -1,0 +1,25 @@
+{
+  "name": "removerbg_web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "^1.0.6",
+    "@types/node": "20.4.7",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "axios": "^1.4.0",
+    "next": "^13.4.13",
+    "nextjs-cors": "^2.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-preloaders": "^3.0.3",
+    "typescript": "5.1.6"
+  }
+}
