@@ -28,7 +28,7 @@ export default function Home() {
           <p>banner para o google ads</p>
         </div>
 
-          <Upload />
+          {/* <Upload /> */}
 
         <div className={styles.areaAdvertising}>
           <p>banner para o google ads</p>
