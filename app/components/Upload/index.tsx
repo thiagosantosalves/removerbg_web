@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import React,  { useState, useCallback, useEffect } from 'react';
 import styles from './styles.module.css';
-import imglyRemoveBackground from "@imgly/background-removal";
 import { Lines } from 'react-preloaders';
 
 import {useDropzone} from 'react-dropzone'
@@ -25,10 +24,9 @@ export default function Upload() {
 
             try {
             
-                await imglyRemoveBackground(event[0]).then((blob: Blob) => {
-                    const url = URL.createObjectURL(blob);
-                    setUrlImage(url);
-                });
+               
+
+                //setUrlImage(url);
 
                 setLoading(false);
                 setIsFile(true);
@@ -69,10 +67,9 @@ export default function Upload() {
 
             try {
             
-                await imglyRemoveBackground(event.target.files[0]).then((blob: Blob) => {
-                    const url = URL.createObjectURL(blob);
-                    setUrlImage(url);
-                });
+                
+
+                //setUrlImage(url);
  
                 setLoading(false);
                 setIsFile(true);
