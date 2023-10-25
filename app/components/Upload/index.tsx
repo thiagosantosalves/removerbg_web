@@ -1,15 +1,17 @@
 "use client"
 import Image from 'next/image'
 import React,  { useState, useCallback, useEffect } from 'react';
+import fs from 'fs';
+import path from 'path';
+import axios from 'axios';
 import styles from './styles.module.css';
-import { Lines } from 'react-preloaders';
+
 
 import {useDropzone} from 'react-dropzone'
 
 export default function Upload() {
     
     const [selectedFile, setSelectedFile] = useState<any>([]);
-    const [file, setFile] = useState<any>(null);
     const [isFile, setIsFile] = useState(false);
     const [urlImage, setUrlImage] = useState('');
     const [loading, setLoading] = useState(false);
@@ -22,16 +24,25 @@ export default function Upload() {
             setLoading(true);
             setSelectedFile(Object.assign(event[0], { preview: URL.createObjectURL(event[0]) }));
 
+            let formData = new FormData();
+            formData.set("file", event[0]);
+
+            let nameImage = {};
+
             try {
-            
-               
+                let res: any = await axios.post('http://24.199.99.39:5000/remove', formData)
+          
+                let newUrl = res.data.url.split('/');
+                nameImage = {
+                    path: newUrl[4]
+                }
 
-                //setUrlImage(url);
-
-                setLoading(false);
+                setUrlImage(res.data.url);
+                setLoading(false)
                 setIsFile(true);
             } catch (error) {
-                console.log(error);
+                setLoading(false)
+                console.log(error)
             }
 
         } else {
@@ -44,7 +55,7 @@ export default function Upload() {
             }, 3000);
         }
 
-    }, [])
+    }, []);
 
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({
@@ -65,19 +76,20 @@ export default function Upload() {
 
             setSelectedFile(Object.assign(event.target.files[0], { preview: URL.createObjectURL(event.target.files[0]) }));
 
+            let formData = new FormData();
+            formData.set("file", event.target.files[0]);
+
             try {
-            
-                
+                let res: any = await axios.post('http://24.199.99.39:5000/remove', formData);
 
-                //setUrlImage(url);
- 
-                setLoading(false);
+                setUrlImage(res.data.url);
+                setLoading(false)
                 setIsFile(true);
-
             } catch (error) {
-                console.log(error);
+                setLoading(false)
+                console.log(error)
             }
-
+            
         } else {
             setLoading(true);
             setError(true);
@@ -91,12 +103,31 @@ export default function Upload() {
     };
 
     function downloadImage(imageURL: any) {
-        const link = document.createElement('a');
-        link.href = imageURL;
-        link.download = 'fundo_removido.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+
+       
+        let fileName = urlImage.split('/');
+        console.log(fileName[4]);
+
+
+
+       
+
+        /*
+        const response = await fetch('http://24.199.99.39:5000/files/57640.png');
+        const blob = await response.blob();
+
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'teste.png';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        */
+
+
+         //await axios.post('http://24.199.99.39:5000/removefile', nameImage)
+        
     }
 
     return (
@@ -171,6 +202,7 @@ export default function Upload() {
             
                     <div className={styles.areaImagePrincipal}>
                         <Image
+                            id='img'
                             src={urlImage}
                             alt="imagem com fundo removido"
                             width={430}
