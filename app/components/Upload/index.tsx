@@ -1,12 +1,8 @@
 "use client"
 import Image from 'next/image'
-import React,  { useState, useCallback, useEffect } from 'react';
-import fs from 'fs';
-import path from 'path';
+import React,  { useState, useCallback } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
-
-
 import {useDropzone} from 'react-dropzone'
 
 export default function Upload() {
@@ -102,32 +98,24 @@ export default function Upload() {
 
     };
 
-    function downloadImage(imageURL: any) {
+    async function downloadImage(imageURL: any) {
 
-       
         let fileName = urlImage.split('/');
         console.log(fileName[4]);
+        let nameImage = fileName[4].split('.');
 
-
-
-       
-
-        /*
-        const response = await fetch('http://24.199.99.39:5000/files/57640.png');
+        const response = await fetch(urlImage);
         const blob = await response.blob();
-
+        
+        const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = window.URL.createObjectURL(blob);
-        a.download = 'teste.png';
         a.style.display = 'none';
+        a.href = url;
+        a.setAttribute('download', `${nameImage[0]}_fundo_removido.png`);
         document.body.appendChild(a);
         a.click();
-        document.body.removeChild(a);
-        */
 
-
-         //await axios.post('http://24.199.99.39:5000/removefile', nameImage)
-        
+        //await axios.post('http://24.199.99.39:5000/removefile', nameImage);
     }
 
     return (
