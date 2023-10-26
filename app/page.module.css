@@ -121,6 +121,18 @@
   background-color: blue;
 }
 
+.areaFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 900px;
+  height: 62px;
+  background-color: red;
+}
+
+.areaFooter p {
+  font-size: 12px;
+}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -250,5 +262,30 @@
 
   .description p {
     font-size: 0.7rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .areaExempleImage {
+    flex-direction: column;
+  }
+
+  .cardExempleImage {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .areaFooter {
+    width: 768px;
+  }
+
+}
+
+@media (max-width: 425px) {
+  .areaFooter {
+    width: 768px;
+    margin-bottom: 140px;
   }
 }

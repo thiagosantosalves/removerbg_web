@@ -47,6 +47,11 @@ export default function Home() {
         </div>
 
       </div>
+
+      <footer className={styles.areaFooter}>
+        <p>©2023 removerBG</p>
+      </footer>
+      
     </main>
   )
 }
