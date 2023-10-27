@@ -39,14 +39,40 @@ export default function Home() {
       <div className={styles.areaExempleImage}>
         
         <div className={styles.cardExempleImage}>
-          <p>...</p>
+          
+          <div className={styles.cardExempleImageText}>
+            <p>Teste qualquer teste qualquer teste qualquer  teste qualquer</p>
+            <p>Teste qualquer teste teste qualquer teste</p>
+          </div>
+
+          <Image
+            src="/imagePrincipal.png"
+            alt="removerBG Logo"
+            width={180}
+            height={180}
+          />
+
         </div>
 
         <div className={styles.cardExempleImage}>
-          <p>...</p>
+        
+          <div className={styles.cardExempleImageText}>
+            <p>Teste qualquer teste qualquer teste qualquer  teste qualquer</p>
+            <p>Teste qualquer teste teste qualquer teste</p>
+          </div>
+
+          <Image
+            src="/imagePrincipal.png"
+            alt="removerBG Logo"
+            width={180}
+            height={180}
+          />
+
         </div>
 
       </div>
+
+      <div className={styles.line}></div>
 
       <footer className={styles.areaFooter}>
         <p>©2023 removerBG</p>
